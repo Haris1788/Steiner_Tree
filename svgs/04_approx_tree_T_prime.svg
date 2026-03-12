@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="210" viewBox="0 0 560 210">
+<style>svg { font-family: 'Segoe UI', system-ui, sans-serif; } text { font-family: 'Segoe UI', system-ui, sans-serif; }</style>
+<rect width="560" height="210" fill="#0f172a" rx="12"/>
+
+
+<text x="280" y="30" font-size="16" fill="#ef4444" text-anchor="middle" font-weight="700">Approximate Tree T' in G' (connects a, c, d)</text>
+
+<line x1="80" y1="120" x2="270" y2="120" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
+<line x1="270" y1="120" x2="470" y2="120" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
+
+<rect x="155" y="85" width="36" height="24" rx="5" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+<text x="173" y="103" font-size="15" fill="#ef4444" text-anchor="middle" font-weight="700">5</text>
+<rect x="352" y="85" width="36" height="24" rx="5" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+<text x="370" y="103" font-size="15" fill="#ef4444" text-anchor="middle" font-weight="700">6</text>
+
+<circle cx="80"  cy="120" r="22" fill="#3b82f6" stroke="#93c5fd" stroke-width="2.5"/>
+<text   x="80"  y="127" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">a</text>
+<circle cx="270" cy="120" r="22" fill="#3b82f6" stroke="#93c5fd" stroke-width="2.5"/>
+<text   x="270" y="127" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<circle cx="470" cy="120" r="22" fill="#3b82f6" stroke="#93c5fd" stroke-width="2.5"/>
+<text   x="470" y="127" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">d</text>
+
+<rect x="155" y="160" width="240" height="32" rx="8" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.35)"/>
+<text x="275" y="182" font-size="15" fill="#ef4444" text-anchor="middle" font-weight="700">cost'(T') = 5 + 6 = 11</text>
+
+</svg>

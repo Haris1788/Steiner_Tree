@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="284" viewBox="0 0 800 284" style="background:white">
+<style>svg { font-family: 'Segoe UI', system-ui, sans-serif; } text { font-family: 'Segoe UI', system-ui, sans-serif; }</style>
+<rect width="800" height="284" fill="#ffffff" rx="8"/>
+<defs><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#6b7280"/></marker></defs>
+
+<text x="400" y="24" font-size="15" fill="#9333ea" text-anchor="middle" font-weight="700">Replace Each Edge of T' by Its Shortest Path in G</text>
+
+<!-- Row 1: a-c -> a-b-c -->
+<rect x="12" y="44" width="230" height="80" rx="10" fill="rgba(220,38,38,.04)" stroke="rgba(220,38,38,.3)"/>
+<text x="127" y="66" font-size="12" fill="#dc2626" text-anchor="middle" font-weight="700">Edge (a, c) in T'  —  cost' = 5</text>
+<line x1="46" y1="96" x2="198" y2="96" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+<circle cx="46"  cy="96" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="46"  y="101" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">a</text>
+<circle cx="198" cy="96" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="198" y="101" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+
+<line x1="256" y1="84" x2="340" y2="84" stroke="#6b7280" stroke-width="2" marker-end="url(#a2)"/>
+<text x="298" y="76" font-size="10" fill="#6b7280" text-anchor="middle" font-style="italic">replace</text>
+
+<rect x="354" y="44" width="430" height="80" rx="10" fill="rgba(37,99,235,.04)" stroke="rgba(37,99,235,.3)"/>
+<text x="569" y="66" font-size="12" fill="#2563eb" text-anchor="middle" font-weight="700">Shortest path a - b - c in G  —  cost = 3 + 2 = 5</text>
+<line x1="400" y1="96" x2="569" y2="96" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="569" y1="96" x2="738" y2="96" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="400" cy="96" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="400" y="101" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">a</text>
+<circle cx="569" cy="96" r="14" fill="#64748b" stroke="#475569" stroke-width="2"/>
+<text   x="569" y="101" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">b</text>
+<circle cx="738" cy="96" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="738" y="101" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<text x="484" y="89" font-size="12" fill="#d97706" text-anchor="middle" font-weight="700">3</text>
+<text x="653" y="89" font-size="12" fill="#d97706" text-anchor="middle" font-weight="700">2</text>
+
+<!-- Row 2: c-d -> c-b-d -->
+<rect x="12" y="148" width="230" height="80" rx="10" fill="rgba(220,38,38,.04)" stroke="rgba(220,38,38,.3)"/>
+<text x="127" y="170" font-size="12" fill="#dc2626" text-anchor="middle" font-weight="700">Edge (c, d) in T'  —  cost' = 6</text>
+<line x1="46" y1="200" x2="198" y2="200" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+<circle cx="46"  cy="200" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="46"  y="205" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<circle cx="198" cy="200" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="198" y="205" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">d</text>
+
+<line x1="256" y1="188" x2="340" y2="188" stroke="#6b7280" stroke-width="2" marker-end="url(#a2)"/>
+<text x="298" y="180" font-size="10" fill="#6b7280" text-anchor="middle" font-style="italic">replace</text>
+
+<rect x="354" y="148" width="430" height="80" rx="10" fill="rgba(37,99,235,.04)" stroke="rgba(37,99,235,.3)"/>
+<text x="569" y="170" font-size="12" fill="#2563eb" text-anchor="middle" font-weight="700">Shortest path c - b - d in G  —  cost = 2 + 4 = 6</text>
+<line x1="400" y1="200" x2="569" y2="200" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="569" y1="200" x2="738" y2="200" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="400" cy="200" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="400" y="205" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<circle cx="569" cy="200" r="14" fill="#64748b" stroke="#475569" stroke-width="2"/>
+<text   x="569" y="205" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">b</text>
+<circle cx="738" cy="200" r="14" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text   x="738" y="205" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">d</text>
+<text x="484" y="193" font-size="12" fill="#d97706" text-anchor="middle" font-weight="700">2</text>
+<text x="653" y="193" font-size="12" fill="#d97706" text-anchor="middle" font-weight="700">4</text>
+
+<!-- Bottom note -->
+<rect x="50" y="242" width="700" height="28" rx="7" fill="rgba(147,51,234,.06)" stroke="rgba(147,51,234,.3)"/>
+<text x="400" y="262" font-size="12" fill="#9333ea" text-anchor="middle" font-weight="700">Union: {a-b(3), b-c(2)} + {c-b(2), b-d(4)} -> remove duplicate b-c</text>
+
+</svg>

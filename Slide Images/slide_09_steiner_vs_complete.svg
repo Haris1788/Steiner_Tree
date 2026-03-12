@@ -1,0 +1,92 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Title -->
+  <text x="400" y="30" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Steiner Tree vs Complete Graph
+  </text>
+  
+  <!-- Left: Steiner Tree -->
+  <text x="200" y="70" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#374151">
+    Steiner Tree
+  </text>
+  <text x="200" y="90" font-family="Arial" font-size="13" text-anchor="middle" fill="#6b7280">
+    (Sparse, with optional nodes)
+  </text>
+  
+  <!-- Terminals -->
+  <circle cx="100" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="300" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="100" cy="280" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="300" cy="280" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- Steiner point -->
+  <circle cx="200" cy="215" r="10" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <text x="230" y="220" font-family="Arial" font-size="11" fill="#92400e" font-weight="bold">Steiner</text>
+  
+  <!-- Tree edges -->
+  <line x1="108" y1="157" x2="192" y2="208" stroke="#22c55e" stroke-width="4"/>
+  <line x1="208" y1="208" x2="292" y2="157" stroke="#22c55e" stroke-width="4"/>
+  <line x1="108" y1="273" x2="192" y2="222" stroke="#22c55e" stroke-width="4"/>
+  <line x1="208" y1="222" x2="292" y2="273" stroke="#22c55e" stroke-width="4"/>
+  
+  <!-- Properties box -->
+  <rect x="80" y="310" width="240" height="70" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="200" y="330" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#92400e">
+    Properties:
+  </text>
+  <text x="200" y="348" font-family="Arial" font-size="11" text-anchor="middle" fill="#78350f">
+    • Can use Steiner vertices
+  </text>
+  <text x="200" y="364" font-family="Arial" font-size="11" text-anchor="middle" fill="#78350f">
+    • Not all edges present
+  </text>
+  
+  <!-- Arrow -->
+  <defs>
+    <marker id="arrow4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+  </defs>
+  <line x1="350" y1="215" x2="430" y2="215" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow4)"/>
+  
+  <!-- Right: Complete Graph -->
+  <text x="600" y="70" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#374151">
+    Complete Graph
+  </text>
+  <text x="600" y="90" font-family="Arial" font-size="13" text-anchor="middle" fill="#6b7280">
+    (All terminals connected)
+  </text>
+  
+  <!-- Terminals only -->
+  <circle cx="500" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="700" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="500" cy="280" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="700" cy="280" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- All edges between terminals -->
+  <line x1="512" y1="150" x2="688" y2="150" stroke="#6366f1" stroke-width="3"/>
+  <line x1="512" y1="280" x2="688" y2="280" stroke="#6366f1" stroke-width="3"/>
+  <line x1="500" y1="162" x2="500" y2="268" stroke="#6366f1" stroke-width="3"/>
+  <line x1="700" y1="162" x2="700" y2="268" stroke="#6366f1" stroke-width="3"/>
+  <line x1="510" y1="160" x2="690" y2="270" stroke="#6366f1" stroke-width="3"/>
+  <line x1="510" y1="270" x2="690" y2="160" stroke="#6366f1" stroke-width="3"/>
+  
+  <!-- Edge labels -->
+  <text x="600" y="145" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₁</text>
+  <text x="600" y="295" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₂</text>
+  <text x="485" y="215" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₃</text>
+  <text x="715" y="215" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₄</text>
+  <text x="570" y="195" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₅</text>
+  <text x="630" y="240" font-family="Arial" font-size="10" text-anchor="middle" fill="#4338ca" font-weight="bold">d₆</text>
+  
+  <!-- Properties box -->
+  <rect x="480" y="310" width="240" height="70" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2" rx="5"/>
+  <text x="600" y="330" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#312e81">
+    Properties:
+  </text>
+  <text x="600" y="348" font-family="Arial" font-size="11" text-anchor="middle" fill="#3730a3">
+    • All terminals connected
+  </text>
+  <text x="600" y="364" font-family="Arial" font-size="11" text-anchor="middle" fill="#3730a3">
+    • Satisfies triangle inequality
+  </text>
+</svg>

@@ -1,0 +1,71 @@
+<svg width="600" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+    <!-- Title -->
+  <text x="300" y="30" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Traveling Salesman Problem (TSP)
+  </text>
+  <text x="300" y="55" font-family="Arial" font-size="14" text-anchor="middle" fill="#6b7280">
+    Visit all cities and return home efficiently
+  </text>
+  
+  <!-- Map background -->
+  <rect x="50" y="80" width="500" height="320" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="10"/>
+  
+  <!-- Cities (nodes) -->
+  <circle cx="150" cy="150" r="20" fill="#ef4444" stroke="#991b1b" stroke-width="3"/>
+  <text x="150" y="157" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">A</text>
+  <text x="150" y="135" font-family="Arial" font-size="11" text-anchor="middle" fill="#92400e">Start/End</text>
+  
+  <circle cx="450" cy="150" r="18" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="450" y="157" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">B</text>
+  <text x="450" y="135" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">City</text>
+  
+  <circle cx="480" cy="300" r="18" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="480" y="307" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">C</text>
+  <text x="480" y="330" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">City</text>
+  
+  <circle cx="300" cy="350" r="18" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="300" y="357" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">D</text>
+  <text x="300" y="380" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">City</text>
+  
+  <circle cx="120" cy="300" r="18" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="120" y="307" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">E</text>
+  <text x="120" y="330" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">City</text>
+  
+  <!-- Optimal tour path -->
+  <defs>
+    <marker id="arrowTSP" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#16a34a" />
+    </marker>
+  </defs>
+  
+  <path d="M 168 155 L 432 155" fill="none" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowTSP)"/>
+  <path d="M 460 168 L 475 282" fill="none" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowTSP)"/>
+  <path d="M 462 305 L 318 345" fill="none" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowTSP)"/>
+  <path d="M 282 345 L 138 305" fill="none" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowTSP)"/>
+  <path d="M 125 282 L 142 168" fill="none" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowTSP)"/>
+  
+  <!-- Distance labels -->
+  <rect x="280" y="140" width="40" height="20" fill="#ffffff" stroke="#22c55e" stroke-width="1" rx="3"/>
+  <text x="300" y="154" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a" font-weight="bold">45</text>
+  
+  <rect x="480" y="220" width="40" height="20" fill="#ffffff" stroke="#22c55e" stroke-width="1" rx="3"/>
+  <text x="500" y="234" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a" font-weight="bold">32</text>
+  
+  <rect x="375" y="330" width="40" height="20" fill="#ffffff" stroke="#22c55e" stroke-width="1" rx="3"/>
+  <text x="395" y="344" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a" font-weight="bold">38</text>
+  
+  <rect x="190" y="330" width="40" height="20" fill="#ffffff" stroke="#22c55e" stroke-width="1" rx="3"/>
+  <text x="210" y="344" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a" font-weight="bold">41</text>
+  
+  <rect x="105" y="220" width="40" height="20" fill="#ffffff" stroke="#22c55e" stroke-width="1" rx="3"/>
+  <text x="125" y="234" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a" font-weight="bold">29</text>
+  
+  <!-- Legend -->
+  <rect x="100" y="420" width="400" height="60" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+  <text x="300" y="443" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Goal: Find shortest tour visiting all cities exactly once
+  </text>
+  <text x="300" y="462" font-family="Arial" font-size="12" text-anchor="middle" fill="#1e3a8a">
+    Total Distance: 45 + 32 + 38 + 41 + 29 = 185 units
+  </text>
+</svg>

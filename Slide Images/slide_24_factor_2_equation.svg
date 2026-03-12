@@ -1,0 +1,31 @@
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <!-- Title -->
+  <text x="300" y="40" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Factor 2 Guarantee
+  </text>
+  
+  <!-- Main equation box -->
+  <rect x="100" y="80" width="400" height="120" fill="#ffffff" stroke="#3b82f6" stroke-width="4" rx="10"/>
+  
+  <!-- Equation -->
+  <text x="300" y="135" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#1e3a8a">
+    Cost(Tour) ≤ 2 · OPT
+  </text>
+  
+  <!-- Explanation -->
+  <text x="300" y="175" font-family="Arial" font-size="15" text-anchor="middle" fill="#3730a3">
+    Our algorithm's tour cost is at most
+  </text>
+  <text x="300" y="195" font-family="Arial" font-size="15" text-anchor="middle" fill="#3730a3">
+    twice the optimal tour cost
+  </text>
+  
+  <!-- Bottom description -->
+  <rect x="80" y="225" width="440" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+  <text x="300" y="248" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#92400e">
+    2-Approximation Algorithm
+  </text>
+  <text x="300" y="268" font-family="Arial" font-size="13" text-anchor="middle" fill="#78350f">
+    Fast, reliable, and guaranteed to be within factor 2 of optimal
+  </text>
+</svg>

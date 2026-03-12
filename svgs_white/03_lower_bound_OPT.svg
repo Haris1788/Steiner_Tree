@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="340" viewBox="0 0 800 340" style="background:white">
+<style>svg { font-family: 'Segoe UI', system-ui, sans-serif; } text { font-family: 'Segoe UI', system-ui, sans-serif; }</style>
+<rect width="800" height="340" fill="#ffffff" rx="8"/>
+<defs><marker id="a1" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/></marker></defs>
+
+<text x="400" y="26" font-size="16" fill="#1e293b" text-anchor="middle" font-weight="700">OPT(I') &lt;= OPT(I)</text>
+
+<!-- LEFT: OPT in G -->
+<text x="150" y="60" font-size="14" fill="#2563eb" text-anchor="middle" font-weight="700">OPT in G = {a-b, b-c, b-d}</text>
+<line x1="70" y1="120" x2="180" y2="95" stroke="#2563eb" stroke-width="4"/>
+<line x1="180" y1="95" x2="100" y2="220" stroke="#2563eb" stroke-width="4"/>
+<line x1="180" y1="95" x2="270" y2="195" stroke="#2563eb" stroke-width="4"/>
+<text x="114" y="98" font-size="13" fill="#d97706" font-weight="700">3</text>
+<text x="126" y="160" font-size="13" fill="#d97706" font-weight="700">2</text>
+<text x="232" y="142" font-size="13" fill="#d97706" font-weight="700">4</text>
+<circle cx="70" cy="120" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="70" y="127" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">a</text>
+<circle cx="180" cy="95" r="18" fill="#64748b" stroke="#475569" stroke-width="2"/>
+<text x="180" y="102" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">b</text>
+<circle cx="100" cy="220" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="100" y="227" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<circle cx="270" cy="195" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="270" y="202" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">d</text>
+<rect x="50" y="250" width="250" height="30" rx="7" fill="rgba(37,99,235,.08)" stroke="rgba(37,99,235,.3)"/>
+<text x="175" y="270" font-size="14" fill="#2563eb" text-anchor="middle" font-weight="700">cost = 3 + 2 + 4 = 9</text>
+
+<!-- Arrow -->
+<line x1="350" y1="155" x2="460" y2="155" stroke="#6b7280" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="405" y="138" font-size="11" fill="#6b7280" text-anchor="middle" font-style="italic">same edges exist in G'</text>
+<text x="405" y="153" font-size="11" fill="#6b7280" text-anchor="middle" font-style="italic">with cost' &lt;= cost</text>
+
+<!-- RIGHT: Same tree in G' -->
+<text x="620" y="60" font-size="14" fill="#16a34a" text-anchor="middle" font-weight="700">Same tree in G'</text>
+<line x1="520" y1="120" x2="630" y2="95" stroke="#16a34a" stroke-width="4"/>
+<line x1="630" y1="95" x2="550" y2="220" stroke="#16a34a" stroke-width="4"/>
+<line x1="630" y1="95" x2="720" y2="195" stroke="#16a34a" stroke-width="4"/>
+<text x="564" y="98" font-size="13" fill="#16a34a" font-weight="700">3</text>
+<text x="576" y="160" font-size="13" fill="#16a34a" font-weight="700">2</text>
+<text x="682" y="142" font-size="13" fill="#16a34a" font-weight="700">4</text>
+<text x="598" y="92" font-size="9" fill="#6b7280">&lt;= 3</text>
+<text x="608" y="166" font-size="9" fill="#6b7280">&lt;= 2</text>
+<text x="700" y="149" font-size="9" fill="#6b7280">&lt;= 4</text>
+<circle cx="520" cy="120" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="520" y="127" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">a</text>
+<circle cx="630" cy="95" r="18" fill="#64748b" stroke="#475569" stroke-width="2"/>
+<text x="630" y="102" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">b</text>
+<circle cx="550" cy="220" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="550" y="227" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">c</text>
+<circle cx="720" cy="195" r="18" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+<text x="720" y="202" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">d</text>
+<rect x="500" y="250" width="250" height="30" rx="7" fill="rgba(22,163,74,.08)" stroke="rgba(22,163,74,.3)"/>
+<text x="625" y="270" font-size="14" fill="#16a34a" text-anchor="middle" font-weight="700">cost' = 3+2+4 = 9 &lt;= 9</text>
+
+<!-- Bottom -->
+<rect x="200" y="295" width="400" height="28" rx="7" fill="rgba(217,119,6,.08)" stroke="rgba(217,119,6,.3)"/>
+<text x="400" y="314" font-size="12" fill="#d97706" text-anchor="middle" font-weight="700">Every edge: cost'(e) &lt;= cost(e)  ==>  OPT(I') &lt;= OPT(I)</text>
+
+</svg>

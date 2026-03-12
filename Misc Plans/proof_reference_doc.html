@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Proof of Theorem 3.2 — Reference Document (Copy-Friendly)</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--accent:#3b82f6;--green:#22c55e;--red:#ef4444;
+--orange:#f59e0b;--purple:#a855f7;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:1.8em;color:#fff;margin-bottom:6px;border-bottom:3px solid var(--purple);padding-bottom:12px}
+h2{font-size:1.4em;color:var(--accent);margin:32px 0 12px;border-left:4px solid var(--accent);padding-left:14px}
+h2.green{color:var(--green);border-color:var(--green)}
+h2.red{color:var(--red);border-color:var(--red)}
+h2.purple{color:var(--purple);border-color:var(--purple)}
+h2.orange{color:var(--orange);border-color:var(--orange)}
+h3{font-size:1.15em;color:#fff;margin:18px 0 8px}
+p{margin:8px 0;font-size:.97em}
+.subtitle{color:var(--muted);font-size:.95em;margin-bottom:28px}
+.note{color:var(--muted);font-size:.88em;font-style:italic}
+.highlight{color:var(--orange);font-weight:700}
+.key{color:var(--green);font-weight:700}
+
+/* Tables — easy to copy */
+table{border-collapse:collapse;width:100%;margin:14px 0 20px;background:var(--card);border-radius:10px;overflow:hidden}
+th{background:#334155;color:#fff;padding:10px 16px;text-align:left;font-size:.92em;font-weight:700}
+td{padding:10px 16px;border-top:1px solid var(--border);font-size:.93em;color:var(--text)}
+tr:hover td{background:rgba(59,130,246,.06)}
+td.num{text-align:center;font-weight:700;font-family:'Cascadia Code','Consolas',monospace}
+td.green{color:var(--green);font-weight:700}
+td.red{color:var(--red);font-weight:700}
+td.orange{color:var(--orange);font-weight:700}
+
+/* Copy-friendly boxes */
+.copybox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin:14px 0;position:relative}
+.copybox::before{content:attr(data-label);position:absolute;top:-10px;left:16px;background:var(--bg);padding:0 8px;font-size:.72em;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+.copybox.blue{border-color:rgba(59,130,246,.4)}
+.copybox.green{border-color:rgba(34,197,94,.4)}
+.copybox.red{border-color:rgba(239,68,68,.4)}
+.copybox.purple{border-color:rgba(168,85,247,.4)}
+.copybox.orange{border-color:rgba(245,158,11,.4)}
+
+/* Math display */
+.math-box{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.14);border-radius:10px;padding:14px 20px;margin:14px 0;text-align:center;overflow-x:auto}
+
+/* Bullet lists */
+ul{padding-left:24px;margin:8px 0}
+li{margin-bottom:6px;font-size:.95em}
+li strong{color:#fff}
+
+/* Steps */
+.step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:12px 0}
+.step-num{display:inline-block;background:var(--accent);color:#fff;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-weight:700;font-size:.85em;margin-right:10px}
+.step-num.green{background:var(--green)}
+.step-num.red{background:var(--red)}
+.step-num.purple{background:var(--purple)}
+
+/* Copy button */
+.copy-btn{position:absolute;top:8px;right:10px;background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.3);border-radius:6px;color:#94a3b8;font-size:.72em;padding:4px 10px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.copy-btn:hover{background:rgba(59,130,246,.2);color:#93c5fd;border-color:rgba(59,130,246,.4)}
+
+/* Divider */
+hr{border:none;border-top:2px solid var(--border);margin:36px 0}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ============================== -->
+<!-- HEADER                         -->
+<!-- ============================== -->
+<h1>Proof of Theorem 3.2 — Reference Document</h1>
+<p class="subtitle">Reduction from Steiner Tree to Metric Steiner Tree (Vazirani, Ch. 3)<br>
+All text is selectable and copy-friendly. Use Ctrl+C to copy any section.</p>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 1: PROBLEM SETUP       -->
+<!-- ============================== -->
+<h2>1. Problem Setup</h2>
+
+<div class="copybox blue" data-label="Instance I">
+<h3>Given Instance $I = (G, R, \text{cost})$</h3>
+<ul>
+  <li><strong>Graph:</strong> G = (V, E) with V = {a, b, c, d}</li>
+  <li><strong>Required vertices:</strong> R = {a, c, d}</li>
+  <li><strong>Steiner vertices:</strong> {b}</li>
+  <li><strong>Number of edges:</strong> 5 (no direct edge between a and d)</li>
+</ul>
+</div>
+
+<h3>Edge List with Costs</h3>
+<table>
+<tr><th>Edge</th><th>From</th><th>To</th><th>Cost</th><th>Notes</th></tr>
+<tr><td>e₁</td><td>a</td><td>b</td><td class="num orange">3</td><td>a (Required) — b (Steiner)</td></tr>
+<tr><td>e₂</td><td>b</td><td>c</td><td class="num orange">2</td><td>b (Steiner) — c (Required)</td></tr>
+<tr><td>e₃</td><td>b</td><td>d</td><td class="num orange">4</td><td>b (Steiner) — d (Required)</td></tr>
+<tr><td>e₄</td><td>a</td><td>c</td><td class="num orange">7</td><td>a (Required) — c (Required)</td></tr>
+<tr><td>e₅</td><td>c</td><td>d</td><td class="num orange">8</td><td>c (Required) — d (Required)</td></tr>
+<tr><td>—</td><td>a</td><td>d</td><td class="num" style="color:#64748b">∞</td><td>No direct edge</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 2: CONSTRUCTION        -->
+<!-- ============================== -->
+<h2 class="orange">2. Construction: Metric Closure G'</h2>
+
+<div class="copybox orange" data-label="Construction Rule">
+<p><strong>Define:</strong> G' = complete graph on V</p>
+<p><strong>Edge costs:</strong> cost'(u, v) = shortest-path distance from u to v in G</p>
+<p><strong>Pairs to compute:</strong> C(4,2) = 6 pairs</p>
+</div>
+
+<h3>All-Pairs Shortest Paths</h3>
+<table>
+<tr><th>Pair</th><th>Direct Edge Cost</th><th>Alternative Paths</th><th>Shortest = cost'</th><th>Changed?</th></tr>
+<tr>
+  <td><strong>(a, b)</strong></td>
+  <td class="num">3</td>
+  <td>Via c: a→c→b = 7+2 = 9</td>
+  <td class="num green">3</td>
+  <td>No (same)</td>
+</tr>
+<tr>
+  <td><strong>(a, c)</strong></td>
+  <td class="num">7</td>
+  <td>Via b: a→b→c = 3+2 = 5</td>
+  <td class="num green">5</td>
+  <td class="red">Yes ⭐ shorter!</td>
+</tr>
+<tr>
+  <td><strong>(a, d)</strong></td>
+  <td class="num" style="color:#64748b">∞ (no edge)</td>
+  <td>Via b: a→b→d = 3+4 = 7<br>Via c,b: a→c→b→d = 7+2+4 = 13</td>
+  <td class="num green">7</td>
+  <td class="red">Yes ⭐ new edge!</td>
+</tr>
+<tr>
+  <td><strong>(b, c)</strong></td>
+  <td class="num">2</td>
+  <td>Via a: b→a→c = 3+7 = 10</td>
+  <td class="num green">2</td>
+  <td>No (same)</td>
+</tr>
+<tr>
+  <td><strong>(b, d)</strong></td>
+  <td class="num">4</td>
+  <td>Via c: b→c→d = 2+8 = 10</td>
+  <td class="num green">4</td>
+  <td>No (same)</td>
+</tr>
+<tr>
+  <td><strong>(c, d)</strong></td>
+  <td class="num">8</td>
+  <td>Via b: c→b→d = 2+4 = 6</td>
+  <td class="num green">6</td>
+  <td class="red">Yes ⭐ shorter!</td>
+</tr>
+</table>
+
+<div class="copybox green" data-label="Result: Instance I'">
+<h3>Metric Closure G' — Complete Graph on V</h3>
+<p>G' has <strong>6 edges</strong> (all C(4,2) pairs). Changes from G:</p>
+<ul>
+  <li><strong>a–c:</strong> cost 7 → cost' <span class="key">5</span> (via b: 3+2)</li>
+  <li><strong>a–d:</strong> no edge → cost' <span class="key">7</span> (new! via b: 3+4)</li>
+  <li><strong>c–d:</strong> cost 8 → cost' <span class="key">6</span> (via b: 2+4)</li>
+  <li><em>a–b, b–c, b–d:</em> unchanged (3, 2, 4)</li>
+</ul>
+<p><strong>Key property:</strong> Triangle inequality holds: cost'(u,w) ≤ cost'(u,v) + cost'(v,w)</p>
+<p>Required vertices stay the same: R' = R = {a, c, d}</p>
+</div>
+
+<h3>Complete Edge Table for G'</h3>
+<table>
+<tr><th>Edge</th><th>cost' in G'</th><th>Original cost in G</th><th>Shortest Path in G</th></tr>
+<tr><td>a–b</td><td class="num green">3</td><td class="num">3</td><td>direct</td></tr>
+<tr><td>a–c</td><td class="num green">5</td><td class="num">7</td><td>a → b → c</td></tr>
+<tr><td>a–d</td><td class="num green">7</td><td class="num">∞</td><td>a → b → d</td></tr>
+<tr><td>b–c</td><td class="num green">2</td><td class="num">2</td><td>direct</td></tr>
+<tr><td>b–d</td><td class="num green">4</td><td class="num">4</td><td>direct</td></tr>
+<tr><td>c–d</td><td class="num green">6</td><td class="num">8</td><td>c → b → d</td></tr>
+</table>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 3: LOWER BOUND         -->
+<!-- ============================== -->
+<h2 class="green">3. Direction 1 — Lower Bound: OPT(I') ≤ OPT(I)</h2>
+
+<div class="copybox blue" data-label="Argument">
+<h3>Why OPT(I') ≤ OPT(I)?</h3>
+<p>For any edge (u, v) ∈ E of graph G, its cost in G' is <strong>at most</strong> its cost in G,
+because the edge itself is one candidate shortest path.</p>
+<p>∴ cost'(u,v) ≤ cost(u,v) for every edge (u,v) ∈ E</p>
+<p>∴ The optimal Steiner tree of G can be placed into G' with equal or lower total cost.</p>
+</div>
+
+<div class="copybox green" data-label="Example">
+<h3>Concrete Verification</h3>
+<table>
+<tr><th>Tree</th><th>Location</th><th>Edges</th><th>Edge Costs</th><th>Total Cost</th></tr>
+<tr>
+  <td><strong>OPT in G</strong></td>
+  <td>Original graph G</td>
+  <td>{a–b, b–c, b–d}</td>
+  <td>3 + 2 + 4</td>
+  <td class="num orange">9</td>
+</tr>
+<tr>
+  <td><strong>Same tree in G'</strong></td>
+  <td>Metric closure G'</td>
+  <td>{a–b, b–c, b–d}</td>
+  <td>3 + 2 + 4</td>
+  <td class="num green">9 ≤ 9 ✓</td>
+</tr>
+</table>
+<p>Each edge: cost'(a,b)=3 ≤ 3 ✓, cost'(b,c)=2 ≤ 2 ✓, cost'(b,d)=4 ≤ 4 ✓</p>
+</div>
+
+<div class="math-box">$$OPT(I') \leq OPT(I)$$</div>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 4: MAPPING BACK        -->
+<!-- ============================== -->
+<h2 class="red">4. Direction 2 — Mapping Back: cost(T) ≤ cost'(T')</h2>
+
+<div class="copybox red" data-label="Step A: Given T'">
+<h3>Approximate Tree T' in G' (from α-approximation algorithm)</h3>
+<p><strong>T' connects:</strong> a, c, d (all required vertices)</p>
+<p><strong>Edges of T':</strong></p>
+<table>
+<tr><th>Edge in T'</th><th>cost' in G'</th></tr>
+<tr><td>a — c</td><td class="num red">5</td></tr>
+<tr><td>c — d</td><td class="num red">6</td></tr>
+</table>
+<p><strong>Total cost'(T') = 5 + 6 = <span style="color:#ef4444;font-size:1.1em">11</span></strong></p>
+</div>
+
+<div class="copybox purple" data-label="Step B: Replace Edges">
+<h3>Replace Each Edge of T' by Its Shortest Path in G</h3>
+
+<table>
+<tr><th>Edge in T'</th><th>cost' in G'</th><th>Replaced by path in G</th><th>Path cost</th><th>Edges used</th></tr>
+<tr>
+  <td><strong>(a, c)</strong></td>
+  <td class="num">5</td>
+  <td>a → b → c</td>
+  <td class="num">3 + 2 = 5</td>
+  <td>{a–b, b–c}</td>
+</tr>
+<tr>
+  <td><strong>(c, d)</strong></td>
+  <td class="num">6</td>
+  <td>c → b → d</td>
+  <td class="num">2 + 4 = 6</td>
+  <td>{c–b, b–d}</td>
+</tr>
+</table>
+
+<p><strong>Union of all edges:</strong></p>
+<p>{a–b(3), b–c(2)} ∪ {c–b(2), b–d(4)}</p>
+<p>= {a–b(3), b–c(2), b–d(4)} &nbsp;&nbsp;(duplicate b–c removed)</p>
+</div>
+
+<div class="copybox green" data-label="Step C: Final Tree T">
+<h3>Final Steiner Tree T in G</h3>
+<table>
+<tr><th>Edge</th><th>Cost</th></tr>
+<tr><td>a — b</td><td class="num green">3</td></tr>
+<tr><td>b — c</td><td class="num green">2</td></tr>
+<tr><td>b — d</td><td class="num green">4</td></tr>
+</table>
+<p><strong>Total cost(T) = 3 + 2 + 4 = <span class="key" style="font-size:1.1em">9</span></strong></p>
+<p>cost(T) = 9 ≤ 11 = cost'(T') ✓</p>
+<p class="note">"Replace each edge of T' by the corresponding shortest path. All required vertices are connected. Remove duplicate edges/cycles to obtain tree T."</p>
+</div>
+
+<div class="math-box">$$\text{cost}(T) \leq \text{cost}'(T')$$</div>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 5: CONCLUSION          -->
+<!-- ============================== -->
+<h2 class="purple">5. Conclusion — Factor-Preserving Reduction</h2>
+
+<div class="copybox purple" data-label="Reduction Pipeline">
+<h3>The Reduction: I → I' → T' → T</h3>
+<table>
+<tr><th>Step</th><th>Input</th><th>Output</th><th>Operation</th><th>Time</th></tr>
+<tr>
+  <td><span class="step-num">1</span></td>
+  <td>Instance I (Graph G)</td>
+  <td>Instance I' (Graph G')</td>
+  <td>Compute metric closure (all-pairs shortest paths)</td>
+  <td>Polynomial</td>
+</tr>
+<tr>
+  <td><span class="step-num green">2</span></td>
+  <td>Instance I' (Metric Graph G')</td>
+  <td>Approx Tree T'</td>
+  <td>Run α-approximation algorithm for metric Steiner tree</td>
+  <td>Depends on alg.</td>
+</tr>
+<tr>
+  <td><span class="step-num purple">3</span></td>
+  <td>Tree T' in G'</td>
+  <td>Tree T in G</td>
+  <td>Replace edges by shortest paths, remove duplicates/cycles</td>
+  <td>Polynomial</td>
+</tr>
+</table>
+</div>
+
+<div class="copybox green" data-label="Chain of Inequalities">
+<h3>The Chain of Inequalities</h3>
+<p style="font-size:1.05em;line-height:2.2">
+<strong>cost(T)</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;≤ &nbsp; cost'(T') &nbsp;&nbsp;&nbsp;&nbsp;<em style="color:#94a3b8">(mapping back: replacing edges by paths can only reduce cost)</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp;≤ &nbsp; α · OPT(I') &nbsp;&nbsp;&nbsp;&nbsp;<em style="color:#94a3b8">(T' is an α-approximation in G')</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp;≤ &nbsp; α · OPT(I) &nbsp;&nbsp;&nbsp;&nbsp;<em style="color:#94a3b8">(lower bound: OPT(I') ≤ OPT(I))</em>
+</p>
+</div>
+
+<div class="math-box">
+$$\text{cost}(T) \;\leq\; \text{cost}'(T') \;\leq\; \alpha \cdot OPT(I') \;\leq\; \alpha \cdot OPT(I)$$
+</div>
+
+<div class="copybox purple" data-label="Numerical Check">
+<h3>Numerical Verification with Our Example</h3>
+<table>
+<tr><th>Quantity</th><th>Value</th><th>Relation</th></tr>
+<tr><td>cost(T)</td><td class="num green">9</td><td rowspan="2">9 ≤ 11 ✓</td></tr>
+<tr><td>cost'(T')</td><td class="num red">11</td></tr>
+<tr><td>OPT(I')</td><td class="num green">9</td><td>11 ≤ α·9 (for α ≥ 11/9 ≈ 1.22)</td></tr>
+<tr><td>OPT(I)</td><td class="num orange">9</td><td>OPT(I') = 9 ≤ 9 = OPT(I) ✓</td></tr>
+</table>
+<p><strong>Full chain:</strong> 9 ≤ 11 ≤ α·9 ≤ α·9 &nbsp;&nbsp;✓</p>
+</div>
+
+<div class="copybox green" data-label="Theorem 3.2">
+<h3>Theorem 3.2 (Vazirani)</h3>
+<p><strong>Statement:</strong> The reduction from the Steiner tree problem to the metric Steiner tree problem is approximation factor preserving.</p>
+<p><strong>Consequence:</strong> Any approximation factor established for the metric Steiner tree problem carries over to the general Steiner tree problem.</p>
+<p><strong>If</strong> there exists an α-approximation algorithm for the metric Steiner tree problem,
+<br><strong>then</strong> there exists an α-approximation algorithm for the general Steiner tree problem. &nbsp;■</p>
+</div>
+
+<hr>
+
+<!-- ============================== -->
+<!-- SECTION 6: QUICK REFERENCE     -->
+<!-- ============================== -->
+<h2>6. Quick-Copy Reference</h2>
+
+<div class="copybox blue" data-label="Key Formulas">
+<h3>Key Formulas (LaTeX)</h3>
+<table>
+<tr><th>Description</th><th>Formula (text)</th><th>LaTeX</th></tr>
+<tr><td>Metric closure</td><td>cost'(u,v) = dist_G(u,v)</td><td><code>\text{cost}'(u,v) = \text{dist}_G(u,v)</code></td></tr>
+<tr><td>Lower bound</td><td>OPT(I') ≤ OPT(I)</td><td><code>OPT(I') \leq OPT(I)</code></td></tr>
+<tr><td>Mapping back</td><td>cost(T) ≤ cost'(T')</td><td><code>\text{cost}(T) \leq \text{cost}'(T')</code></td></tr>
+<tr><td>α-approximation</td><td>cost'(T') ≤ α · OPT(I')</td><td><code>\text{cost}'(T') \leq \alpha \cdot OPT(I')</code></td></tr>
+<tr><td>Full chain</td><td>cost(T) ≤ cost'(T') ≤ α·OPT(I') ≤ α·OPT(I)</td><td><code>\text{cost}(T) \leq \text{cost}'(T') \leq \alpha \cdot OPT(I') \leq \alpha \cdot OPT(I)</code></td></tr>
+<tr><td>Triangle ineq.</td><td>cost'(u,w) ≤ cost'(u,v) + cost'(v,w)</td><td><code>\text{cost}'(u,w) \leq \text{cost}'(u,v) + \text{cost}'(v,w)</code></td></tr>
+</table>
+</div>
+
+<div class="copybox orange" data-label="All Numbers">
+<h3>All Numerical Values at a Glance</h3>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>|V|</td><td>4</td></tr>
+<tr><td>|R|</td><td>3</td></tr>
+<tr><td>|E| in G</td><td>5</td></tr>
+<tr><td>|E| in G' (complete)</td><td>6</td></tr>
+<tr><td>Edge costs in G</td><td>a-b: 3, b-c: 2, b-d: 4, a-c: 7, c-d: 8</td></tr>
+<tr><td>Edge costs in G'</td><td>a-b: 3, a-c: 5, a-d: 7, b-c: 2, b-d: 4, c-d: 6</td></tr>
+<tr><td>OPT(I) = OPT in G</td><td>9 (edges: a-b, b-c, b-d)</td></tr>
+<tr><td>OPT(I') = OPT in G'</td><td>9</td></tr>
+<tr><td>Approx T' in G'</td><td>11 (edges: a-c, c-d)</td></tr>
+<tr><td>Mapped tree T in G</td><td>9 (edges: a-b, b-c, b-d)</td></tr>
+</table>
+</div>
+
+<p style="text-align:center;color:#64748b;margin-top:40px;font-size:.85em">End of Reference Document — All text is selectable and copy-friendly</p>
+
+</div>
+
+<script>
+// Add copy-on-click for table cells
+document.querySelectorAll('td, th').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.title = 'Click to copy cell text';
+  el.addEventListener('click', () => {
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = el.style.background;
+      el.style.background = 'rgba(34,197,94,.25)';
+      setTimeout(() => el.style.background = orig, 400);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<svg width="850" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500">
+  <!-- Title -->
+  <text x="425" y="45" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Block 1: Metric Steiner Tree
+  </text>
+
+  <!-- LEFT SIDE: Key Properties Box -->
+  <rect x="30" y="70" width="340" height="200" fill="#f0fdf4" stroke="#22c55e" stroke-width="3" rx="12"/>
+  <text x="200" y="100" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#14532d">
+    Metric Case &#x2013; Key Properties
+  </text>
+
+  <!-- Property 1 -->
+  <circle cx="60" cy="130" r="8" fill="#22c55e"/>
+  <text x="80" y="136" font-family="Arial" font-size="14" fill="#1f2937">
+    Costs are <tspan font-weight="bold">non-negative</tspan>
+  </text>
+
+  <!-- Property 2 -->
+  <circle cx="60" cy="165" r="8" fill="#22c55e"/>
+  <text x="80" y="171" font-family="Arial" font-size="14" fill="#1f2937">
+    The graph is <tspan font-weight="bold">complete</tspan>
+  </text>
+
+  <!-- Property 3 (Crucial) -->
+  <rect x="45" y="195" width="310" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+  <text x="55" y="218" font-family="Arial" font-size="13" font-weight="bold" fill="#92400e">
+    Crucial Rule:
+  </text>
+  <text x="55" y="242" font-family="Arial" font-size="15" font-weight="bold" fill="#b45309">
+    Triangle Inequality holds!
+  </text>
+  <text x="310" y="230" font-family="Arial" font-size="28" fill="#f59e0b">&#9888;</text>
+
+  <!-- RIGHT SIDE: Triangle Diagram -->
+  <rect x="400" y="70" width="430" height="310" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" rx="12"/>
+  <text x="615" y="100" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Triangle Inequality Visualized
+  </text>
+
+  <!-- Triangle vertices -->
+  <circle cx="480" cy="320" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+  <circle cx="750" cy="320" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+  <circle cx="615" cy="140" r="20" fill="#fbbf24" stroke="#f59e0b" stroke-width="3"/>
+
+  <!-- Vertex labels inside circles -->
+  <text x="480" y="327" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">u</text>
+  <text x="750" y="327" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">v</text>
+  <text x="615" y="147" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#78350f">w</text>
+
+  <!-- Indirect path: u to w (RED - longer) -->
+  <line x1="495" y1="307" x2="600" y2="155" stroke="#ef4444" stroke-width="4"/>
+  <text x="525" y="215" font-family="Arial" font-size="14" font-weight="bold" fill="#ef4444" transform="rotate(-52, 525, 215)">
+    c(u,w) = 5
+  </text>
+
+  <!-- Indirect path: w to v (RED - longer) -->
+  <line x1="630" y1="155" x2="735" y2="307" stroke="#ef4444" stroke-width="4"/>
+  <text x="705" y="215" font-family="Arial" font-size="14" font-weight="bold" fill="#ef4444" transform="rotate(52, 705, 215)">
+    c(w,v) = 4
+  </text>
+
+  <!-- Red label: total indirect -->
+  <text x="615" y="130" font-family="Arial" font-size="12" text-anchor="middle" fill="#dc2626">
+    Indirect: 5 + 4 = 9
+  </text>
+
+  <!-- Direct path: u to v (GREEN - shorter!) -->
+  <line x1="500" y1="330" x2="730" y2="330" stroke="#22c55e" stroke-width="6" stroke-dasharray="10,5"/>
+  <!-- Green arrow head -->
+  <polygon points="730,325 742,330 730,335" fill="#22c55e"/>
+
+  <!-- Direct path label -->
+  <text x="615" y="360" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle" fill="#16a34a">
+    c(u,v) = 7  (Direct Path)
+  </text>
+  <text x="550" y="360" font-family="Arial" font-size="16" fill="#16a34a">&#10004;</text>
+
+  <!-- BOTTOM: Inequality Formula Box -->
+  <rect x="100" y="400" width="650" height="85" fill="#ffffff" stroke="#3b82f6" stroke-width="4" rx="12"/>
+
+  <!-- Main inequality -->
+  <text x="425" y="440" font-family="Arial" font-size="26" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    c(u,v)  &#x2264;  c(u,w) + c(w,v)
+  </text>
+
+  <!-- Numeric example -->
+  <text x="425" y="470" font-family="Arial" font-size="16" text-anchor="middle" fill="#6b7280">
+    Example:   7  &#x2264;  5 + 4  =  9   &#10004;   Direct path is always shorter or equal
+  </text>
+
+  <!-- Decorative: "Shorter!" callout -->
+  <rect x="30" y="300" width="130" height="40" fill="#dcfce7" stroke="#22c55e" stroke-width="2" rx="20"/>
+  <text x="95" y="325" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#15803d">
+    &#10004; Shorter!
+  </text>
+  <!-- Arrow from callout to direct path -->
+  <line x1="160" y1="320" x2="490" y2="330" stroke="#22c55e" stroke-width="2" stroke-dasharray="4,3"/>
+</svg>

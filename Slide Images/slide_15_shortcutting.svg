@@ -1,0 +1,108 @@
+<svg width="900" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <!-- Title -->
+  <text x="450" y="30" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#1e40af">
+    Shortcutting: From Euler Tour to Hamiltonian Cycle
+  </text>
+  
+  <!-- Left: Euler Tour (with repeated visits) -->
+  <text x="220" y="70" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle" fill="#374151">
+    Euler Tour (visits nodes multiple times)
+  </text>
+  
+  <!-- Nodes -->
+  <circle cx="150" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="130" y="155" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₁</text>
+  
+  <circle cx="290" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="310" y="155" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₂</text>
+  
+  <circle cx="150" cy="270" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="130" y="275" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₃</text>
+  
+  <circle cx="290" cy="270" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="310" y="275" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₄</text>
+  
+  <!-- Steiner nodes (visited but not required) -->
+  <circle cx="220" cy="150" r="10" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <text x="220" y="135" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">S₁</text>
+  
+  <circle cx="220" cy="270" r="10" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <text x="220" y="295" font-family="Arial" font-size="10" text-anchor="middle" fill="#92400e">S₂</text>
+  
+  <!-- Euler tour path (visits steiner nodes) -->
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444" />
+    </marker>
+  </defs>
+  
+  <path d="M 150 162 L 150 258 L 208 270 L 208 270 L 208 150 L 162 150 L 232 150 L 278 150 L 290 162 L 290 258 L 278 270 L 232 270 L 220 282" 
+        fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,3" marker-mid="url(#arrowRed)"/>
+  
+  <text x="220" y="315" font-family="Arial" font-size="11" text-anchor="middle" fill="#dc2626">
+    R₁ → R₃ → S₂ → S₁ → R₂ → R₄ → S₂ → R₁
+  </text>
+  <text x="220" y="335" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="#dc2626">
+    Cost = 2 · OPT
+  </text>
+  
+  <!-- Arrow with "Shortcut" label -->
+  <defs>
+    <marker id="arrow9" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+      <polygon points="0 0, 12 3, 0 6" fill="#16a34a" />
+    </marker>
+  </defs>
+  <line x1="340" y1="210" x2="410" y2="210" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow9)"/>
+  <text x="375" y="195" font-family="Arial" font-size="13" font-weight="bold" text-anchor="middle" fill="#16a34a">
+    Shortcut
+  </text>
+  <text x="375" y="235" font-family="Arial" font-size="11" text-anchor="middle" fill="#15803d">
+    Skip Steiner &amp;
+  </text>
+  <text x="375" y="250" font-family="Arial" font-size="11" text-anchor="middle" fill="#15803d">
+    repeated nodes
+  </text>
+  
+  <!-- Right: Hamiltonian Cycle (visits each required node once) -->
+  <text x="660" y="70" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle" fill="#374151">
+    Hamiltonian Cycle (each node once)
+  </text>
+  
+  <!-- Required nodes only -->
+  <circle cx="590" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="570" y="155" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₁</text>
+  
+  <circle cx="730" cy="150" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="750" y="155" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₂</text>
+  
+  <circle cx="590" cy="270" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="570" y="275" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₃</text>
+  
+  <circle cx="730" cy="270" r="12" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <text x="750" y="275" font-family="Arial" font-size="12" font-weight="bold" fill="#1e40af">R₄</text>
+  
+  <!-- Hamiltonian cycle (direct connections, skipping steiner) -->
+  <defs>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e" />
+    </marker>
+  </defs>
+  
+  <line x1="590" y1="162" x2="590" y2="258" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <line x1="602" y1="270" x2="718" y2="270" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <line x1="730" y1="258" x2="730" y2="162" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <line x1="718" y1="150" x2="602" y2="150" stroke="#22c55e" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  
+  <text x="660" y="315" font-family="Arial" font-size="11" text-anchor="middle" fill="#16a34a">
+    R₁ → R₃ → R₄ → R₂ → R₁
+  </text>
+  <text x="660" y="335" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle" fill="#16a34a">
+    Cost ≤ 2 · OPT (by triangle inequality)
+  </text>
+  
+  <!-- Bottom explanation -->
+  <rect x="50" y="355" width="800" height="35" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="450" y="378" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#92400e">
+    Triangle Inequality guarantees: Direct path ≤ Path through intermediate vertices
+  </text>
+</svg>
