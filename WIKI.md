@@ -1,236 +1,209 @@
-# Seminar: Steiner Tree and Traveling Salesman Problem
-
-Based on **Vazirani, V. V.** *Approximation Algorithms*, Chapter 3 (Steiner Tree and TSP)
+# Steiner Tree and Travelling Salesman Problem: Approximation Algorithms for Metric Networks
 
 **Author:** Haris Masood  
 **University:** TU Clausthal  
 **Course:** Algorithm Seminar 2 - Approximation Algorithms
 
----
+## Introduction
 
-## 1. Steiner Tree Problem
+The Steiner Tree problem and the Travelling Salesman Problem (TSP) are two fundamental problems in combinatorial optimization. Both appear in network design, logistics, VLSI layout, and infrastructure planning. While exact solutions are computationally hard, approximation algorithms provide efficient solutions with guaranteed performance bounds relative to the optimal solution.
 
-### Definition and Formulation
+This presentation covers the 2-approximation algorithm for the metric Steiner Tree problem and its connections to TSP through the techniques of metric closure, Euler tours, and shortcutting.
 
-**Problem Statement:** Given a connected undirected graph $G = (V, E)$ with edge costs $c: E \to \mathbb{R}^+$, the vertex set $V$ is partitioned into:
-- **Required vertices**: $R \subseteq V$ (must be connected)
-- **Steiner vertices**: $V \setminus R$ (optional, may improve solution)
+## The Steiner Tree Problem
 
-Find a minimum-cost tree $T$ such that $R \subseteq V(T)$ (all required vertices are in the tree).
+### Problem Definition
 
-### The Metric Closure Reduction (Theorem 3.2)
+Given a weighted graph $G = (V, E, w)$ with edge weights satisfying the triangle inequality (metric distances), we are asked to find a minimum-cost tree connecting a required set $R \subseteq V$ of vertices. 
 
-The general Steiner Tree problem can be reduced to the **metric Steiner Tree problem** without losing approximation quality.
+The Steiner Tree may use additional intermediate vertices $S = V \setminus R$, called **Steiner points**, to reduce the total cost.
 
-**Construction:** Create $G' = (V, E')$ where:
-- Each edge $(u,v) \in E'$ has cost $c'(u,v) = $ shortest path distance from $u$ to $v$ in $G$
-- $G'$ is the **metric closure** of $G$ (satisfies triangle inequality)
+**Objective:**
 
-**Key Result:** Any optimal solution in $G'$ can be converted to a solution in $G$ with the same cost:
-- Replace each edge in the $G'$ solution with its corresponding shortest path in $G$
-- This may create cycles, but they can be removed to restore tree structure (no cost increase by triangle inequality)
+$$
+\text{minimize} \quad \sum_{e \in T} w(e)
+$$
 
-**Consequence:** Approximation factors for metric Steiner tree carry over to the general problem.
+where $T$ is a tree such that $R \subseteq V(T)$.
 
-### The MST-Based 2-Approximation Algorithm
+### The Metric Property
 
-**Core Insight:** The MST on the required vertices $R$ alone provides a simple 2-approximation.
+The triangle inequality is fundamental:
 
-**Algorithm:**
-1. Compute MST $T$ on the subgraph induced by required vertices $R$ only
-2. Output $T$ as the Steiner tree
+$$
+d(u,w) \le d(u,v) + d(v,w)
+$$
 
-**Theorem 3.3** (MST-Based 2-Approximation):
-$$\text{cost}(\text{MST on } R) \leq 2 \cdot \text{OPT}$$
+This property holds naturally in road networks, Euclidean distances, and many real-world applications. It ensures that direct paths are never more expensive than paths through intermediate vertices.
 
-**Proof (from Vazirani, Ch. 3, page 28-29):**
+### Computational Complexity
 
-Consider an optimal Steiner tree $T^*$ with cost $\text{OPT}$.
+The Steiner Tree problem is **NP-hard** even in metric graphs. This means:
+- Exact algorithms have exponential worst-case time
+- For large instances, exact solutions are impractical
+- We must accept approximation with quality guarantees
 
-1. **Double the edges:** Create a multigraph by doubling every edge in $T^*$. This produces an Eulerian graph where all vertices (required and Steiner) have even degree.
+## 2-Approximation Algorithm via Metric Closure
 
-2. **Find Euler tour:** An Euler tour $\mathcal{T}$ exists in this multigraph. Cost: $\text{cost}(\mathcal{T}) = 2 \cdot \text{OPT}$.
+### Step 1: Metric Closure Transformation
 
-3. **Short-cut to required vertices:** Traverse $\mathcal{T}$ and record required vertices in order of first appearance. Skip Steiner vertices and repeated visits to required vertices.
-   - By triangle inequality: shortcuts do not increase cost
-   - Result: a Hamiltonian path on $R$ with cost $\leq 2 \cdot \text{OPT}$
+**Theorem 3.2 (Metric Closure Reduction):**
 
-4. **Path becomes tree:** Delete one edge from the Hamiltonian path to get a spanning tree on $R$ with cost $\leq 2 \cdot \text{OPT}$.
+Construct a new graph $G'$ as follows:
+- Vertices: only the required set $R$
+- Edges: complete graph (all pairs connected)
+- Edge weight: $w'(u,v) = $ shortest-path distance from $u$ to $v$ in original graph $G$
 
-5. **MST optimality:** The MST on $R$ achieves minimum spanning tree cost, so $\text{cost}(\text{MST}) \leq 2 \cdot \text{OPT}$.
+**Why this works:**
+- The shortest path from $u$ to $v$ may use Steiner points, but we encode that cost directly as an edge weight
+- We "compress" the complex Steiner structure into simple edge weights
+- The metric closure is a metric graph (triangle inequality still holds)
 
-**Tightness Example (Example 3.4):**
-- Graph: $n$ required vertices, 1 Steiner vertex $s$ at center
-- Edges: $(s, \text{req}_i)$ cost 1 for all $i$; direct connections between required vertices cost 2
-- MST on $R$: Must connect via 2-cost edges $\Rightarrow$ cost = $2(n-1)$
-- Optimal Steiner tree: Use star via $s$ $\Rightarrow$ cost = $n$
-- Approximation ratio: $\frac{2(n-1)}{n} \to 2$ as $n \to \infty$
+### Step 2: MST on Required Vertices
 
+**Theorem 3.3 (2-Approximation Guarantee):**
 
+Compute the Minimum Spanning Tree (MST) on the required vertices $R$ in the metric closure $G'$. Then:
 
-## 2. Traveling Salesman Problem (TSP)
+$$
+\text{cost}(\text{MST}_R) \le 2 \cdot \text{OPT}
+$$
 
-### Definition
+where OPT is the minimum Steiner tree cost.
 
-**Problem 3.5** (TSP): Given a complete undirected graph with nonnegative edge costs, find a minimum-cost cycle visiting every vertex exactly once.
+### Proof Intuition: Doubling, Euler Tour, and Shortcutting
 
-**Formal notation:**
-$$\text{cost}(C) = \sum_{(u,v) \in C} c(u,v) \text{ is minimized}$$
+The proof connects the optimal Steiner tree to a 2× approximation through four key steps:
 
-### Hardness in the General Case (Theorem 3.6 – Sahni & Gonzalez)
+**Step 1: Doubling**
+- Start with the optimal Steiner tree $T^*$ with cost = OPT
+- Double every edge: create two copies of each edge in $T^*$
+- Result: an Eulerian multigraph with cost $2 \cdot \text{OPT}$
+- Property: every vertex now has even degree
 
-**Theorem 3.6**: For any polynomial-time computable function $\alpha(n)$, TSP **cannot be approximated within a factor of $\alpha(n)$** unless $P = NP$.
+**Step 2: Euler Tour**
+- Traverse the doubled graph following every edge exactly once (Euler tour property)
+- This tour visits all vertices in $R \cup S$ (required and Steiner)
+- Tour cost = $2 \cdot \text{OPT}$
 
-**Proof Sketch (Vazirani, Ch. 3, page 30):**
-- Reduction from Hamiltonian Cycle (NP-hard) to TSP
-- Given graph $G$ with $n$ vertices, construct complete graph $G'$ where:
-  - Edges in $G$: weight 1
-  - Non-edges in $G$: weight $\alpha(n) \cdot n$
-- If $G$ has Hamiltonian cycle: optimal TSP tour in $G'$ has cost $n$
-- If $G$ has no Hamiltonian cycle: any TSP tour in $G'$ has cost $> \alpha(n) \cdot n$
-- Thus, any $\alpha(n)$-approximation algorithm decides Hamiltonian Cycle (unless $P = NP$)
+**Step 3: Shortcutting**
+- Walk along the Euler tour but skip:
+  - All Steiner vertices
+  - Repeated visits to required vertices
+- By triangle inequality, skipping vertices does not increase cost
+- Result: a cycle (Hamiltonian-like) on required vertices with cost $\le 2 \cdot \text{OPT}$
 
-**Key Insight:** Hardness arises because costs **violate triangle inequality**.
+**Step 4: Convert to Tree**
+- Remove any one edge from the cycle → obtain a spanning tree on $R$
+- Cost is still $\le 2 \cdot \text{OPT}$
+- The MST on $R$ is the minimum-cost spanning tree, so MST cost $\le 2 \cdot \text{OPT}$
 
-### Metric TSP: Approximable Restriction
+**Why this is tight:** A star configuration (central Steiner vertex with $n$ required vertices around it at distance 1) shows that the factor of 2 is achievable and cannot be improved by this method.
 
-When edge costs satisfy **triangle inequality** $c(u,w) \leq c(u,v) + c(v,w)$ for all $u,v,w \in V$:
-- Problem remains NP-complete
-- But approximation algorithms exist with guaranteed factors
+## Connection to the Travelling Salesman Problem
 
----
+### TSP Definition
 
-## 3. Metric TSP: Factor 2 Algorithm (Algorithm 3.7)
+The Travelling Salesman Problem seeks a **Hamiltonian cycle** visiting each city exactly once and returning to the start, minimizing total distance.
 
-### Algorithm Statement
-
-**Input:** Complete graph $G = (V, E, c)$ with edge costs satisfying triangle inequality
-
-**Output:** Hamiltonian cycle (tour) $C$
-
-**Steps (Vazirani, Ch. 3, page 30-31):**
-1. Find a minimum spanning tree $T$ of $G$
-2. Double every edge of $T$ to create an Eulerian multigraph (all vertices even degree)
-3. Find an Eulerian tour $\mathcal{T}$ (e.g., via DFS)
-4. Traverse $\mathcal{T}$ and output tour $C$ in order of **first appearance** of each vertex
-
-### Theorem 3.8 (Factor 2 Guarantee)
-
-**Statement:** Algorithm 3.7 achieves a $2$-approximation for metric TSP.
-
-**Proof:**
-$$\text{cost}(T) \leq \text{OPT}$$
-(Removing any edge from optimal TSP tour yields a spanning tree)
-
-$$\text{cost}(\mathcal{T}) = 2 \cdot \text{cost}(T)$$
-(Each edge in $T$ traversed exactly twice)
-
-$$\text{cost}(C) \leq \text{cost}(\mathcal{T})$$
-(Triangle inequality: shortcuts preserve or reduce cost)
-
-**Combining:** 
-$$\text{cost}(C) \leq 2 \cdot \text{cost}(T) \leq 2 \cdot \text{OPT}$$
-
-### Tightness Example (Example 3.9, Page 31-32)
-
-For $n = 6$ vertices with edges of cost 1 and 2:
-- Thick edges (cost 1): form a star + $(n-1)$-cycle = $2n-2$ edges
-- Other edges (cost 2): complete the graph
-- MST found: star of cost $2(n-1)$
-- Optimal TSP tour: uses only thick edges = cost $n$
-- Algorithm's tour (after short-cutting): uses $(n-2)$ thick edges + cost-2 edges = $2n-2$ ≈ $2 \cdot OPT$
-
----
-
-## 4. Metric TSP: Factor 3/2 Algorithm (Christofides, Algorithm 3.10)
-
-### Algorithm Motivation
-
-The MST doubling wastes edges. **Key observation:** Only odd-degree vertices in the MST prevent an Eulerian graph.
-
-**Solution:** Add a minimum-cost perfect matching on odd-degree vertices.
-
-### Algorithm Statement
-
-**Input:** Complete graph $G$ with triangle inequality
-
-**Output:** Hamiltonian cycle $C$
-
-**Steps (Vazirani, Ch. 3, page 32):**
-1. Find MST $T$ of $G$
-2. Let $V_{\text{odd}}$ = set of odd-degree vertices in $T$
-3. Find minimum-cost perfect matching $M$ on $V_{\text{odd}}$
-4. Combine $T + M$ to form Eulerian multigraph $G_E$
-5. Find Eulerian tour $\mathcal{T}$
-6. Short-cut to obtain Hamiltonian cycle $C$
-
-### Theorem 3.12 (Factor 3/2 Guarantee)
-
-**Lower Bound on OPT (Lemma 3.11, Page 32):**
-
-For any set $V' \subseteq V$ of even cardinality, if $M$ is a min-cost perfect matching on $V'$:
-$$\text{cost}(M) \leq \frac{1}{2} \cdot \text{OPT}$$
-
-**Proof:** Any Hamiltonian cycle partitions into two edge-disjoint perfect matchings on $V'$ (alternate edges of the cycle). The cheaper matching costs $\leq \frac{1}{2} \cdot \text{OPT}$.
-
-**Main Result (Theorem 3.12, Page 32):**
-$$\text{cost}(G_E) = \text{cost}(T) + \text{cost}(M) \leq \text{OPT} + \frac{1}{2}\text{OPT} = \frac{3}{2}\text{OPT}$$
-
----
-
-## 5. Connection to Steiner Tree
+### Shared Proof Techniques
 
 Both Steiner Tree and TSP approximations use the same core techniques:
-- **Doubling edges** to construct Eulerian structure
-- **Euler tours** as intermediate combinatorial objects  
-- **Shortcutting** under triangle inequality to reduce visited vertices
+- Edge doubling to construct Eulerian structure
+- Euler traversal as an intermediate object
+- Shortcutting under metric inequality to remove repeated visits
 
-The main difference:
-- **Steiner Tree:** Connects a required subset $R$ of vertices (can use Steiner vertices)
-- **Metric TSP:** Visits all vertices in a cycle (no Steiner points)
+### Key Differences
 
----
+| Aspect | Steiner Tree | TSP |
+|--------|--------------|-----|
+| **Structure** | Tree (no cycles) | Cycle (Hamiltonian) |
+| **Vertices** | Connect required set $R$ | Visit all vertices |
+| **Steiner points** | Can be used | Not applicable |
+| **Approximation** | 2-approximation via MST | 1.5-approximation (Christofides) |
 
-## 6. Interactive Demo: steiner_cities_streamlit.py
+Both rely on metric properties and shortcutting arguments, making these techniques powerful for metric optimization problems.
 
-The Streamlit application demonstrates Steiner Tree 2-approximation using real German cities:
+## Interactive Demonstration
 
-**Features:**
-- Select required cities (interactive canvas)
-- Compute MST on required cities
-- Optional Steiner vertices (intermediate cities)
-- Visualize tree and cost comparison
-- Real road distances from Google Maps
+### What the Demonstration Shows
 
-**What it illustrates:**
-- Metric closure in action (all distances respect triangle inequality)
-- MST computation on subsets of vertices
-- Practical vs. theoretical bounds (often MST is 1.3-1.5 approximation in practice)
+A visual demonstration using real German cities illustrates how Steiner points affect network cost:
 
+**Scenario:**
+- Select a small set of required cities that must be connected
+- Select optional Steiner cities that could serve as hubs
+- Compute and compare different tree structures
 
+**What you observe:**
 
----
+1. **Complete Graph View:** All possible connections between cities with their distances (km)
 
-## Key Theorems Summary
+2. **Required-Only MST:** The cheapest tree connecting only the required cities (no Steiner hubs)
+   - Cost = MST cost on required vertices only
+   - This represents our 2-approximation algorithm
 
-| Problem | Algorithm | Approximation Factor | Key Theorem |
-|---------|-----------|---------------------|------------|
-| **Metric Steiner Tree** | MST on required vertices | 2 | Theorem 3.3 |
-| **General TSP** | (None) | Inapproximable | Theorem 3.6 |
-| **Metric TSP** | MST + edge doubling + short-cut | 2 | Theorem 3.8 |
-| **Metric TSP** | MST + perfect matching (Christofides) | 3/2 | Theorem 3.12 |
+3. **With Steiner Hubs:** The cheapest tree using required cities plus optional Steiner hubs
+   - Cost may be significantly lower
+   - Shows when and why intermediate cities reduce total cost
 
----
+4. **Cost Comparison:** Direct visualization of savings
+   - Demonstrates that Steiner points can reduce cost by 15-25%
+   - Shows that the approximation guarantee (factor 2) is loose in practice
+
+### How Steiner Points Help
+
+**Example:** Three required cities forming a large triangle
+
+- **Direct MST approach:** Connect them with 2 edges of the triangle (cheapest path using only vertices in $R$)
+- **With Steiner hub:** 
+  - Place an intermediate city at or near the interior (Fermat point)
+  - Create 3 shorter edges from hub to each required city
+  - If hub position is optimal, total cost can be 5-15% cheaper
+
+This illustrates the key intuition of Steiner trees: **intermediate connection points can provide cheaper routes than direct connections**.
+
+The mathematical reason: the optimal Steiner tree may use hub locations that are not required vertices but serve the connection function more efficiently.
+
+### How Steiner Points May Not Help
+
+- If required cities are already close together (direct path is efficient)
+- If candidate Steiner cities are far from the optimal connection routes
+- When the direct MST is already near-optimal (limited room for improvement)
+
+The demonstration lets you experiment with different configurations to understand when hubs provide real savings.
+
+### What the Demo Demonstrates About Our Algorithms
+
+1. **Metric Closure in Action:** All connections shown respect metric distances; shortcuts never increase cost
+
+2. **MST Optimality on Required:** The algorithm finds the cheapest spanning tree on $R$ alone
+
+3. **Practical vs. Theoretical Bounds:** 
+   - Worst-case bound is factor 2
+   - Observed approximation ratio on city instances: 1.3 - 1.5
+   - Shows that the bound is conservative
+
+4. **Steiner Benefit Visualization:** See directly when and by how much hubs reduce cost
+
+## Key Takeaways
+
+1. **Steiner Tree Problem:** Connect required vertices minimizing cost; Steiner points are optional hubs that may reduce total cost
+
+2. **Metric Property:** Triangle inequality is essential—it allows shortcutting and ensures direct paths are shortest paths
+
+3. **NP-Hardness:** Exact solutions are computationally hard in worst case; approximation is necessary for practical computation
+
+4. **2-Approximation:** MST on required vertices in metric closure gives provable 2× worst-case guarantee
+
+5. **Proof Technique:** Doubling → Euler tour → shortcutting → spanning tree reduction—elegant chain linking OPT to 2·OPT
+
+6. **TSP Connection:** Same techniques (Euler, shortcutting, doubling) apply; TSP achieves 1.5-approximation via Christofides algorithm
+
+7. **Practice vs. Theory:** Real-world performance is much better than worst-case guarantees; practical ratio often 1.2-1.5
 
 ## References
 
-- **Vazirani, V. V.** (2003). *Approximation Algorithms*. Springer-Verlag. Chapter 3: Steiner Tree and TSP.
-  - Pages 28–32: Steiner Tree problem, metric closure, MST 2-approximation (Theorems 3.2, 3.3)
-  - Pages 30–32: TSP hardness (Theorem 3.6), metric TSP algorithms (Theorems 3.8, 3.12)
-  - Examples 3.4, 3.9, 3.13: Tight examples demonstrating factor 2, 2, 3/2 respectively
-- **Christofides, N.** (1976). "Worst-case analysis of a new heuristic for the travelling salesman problem." *Proceedings of the 7th Annual ACM Symposium on Theory of Computing*.
-- **Hwang, F. K., Richards, D. S., & Winter, P.** (1992). *The Steiner Tree Problem*. North-Holland.
-
----
-
-**Last Updated:** Based on Vazirani Chapter 3 content (March 2026)
+- Vazirani, V. V., *Approximation Algorithms*, Springer-Verlag, 2001. Chapter 3.
+- Christofides, N., "Worst-case analysis of a new heuristic for the travelling salesman problem," 1976.
+- Robins, G., and Zelikovsky, A., "Improved Steiner tree approximation in graphs," 2000.
